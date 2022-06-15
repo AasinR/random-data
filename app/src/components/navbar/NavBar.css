@@ -1,0 +1,17 @@
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 6vh;
+
+    background-color: rgb(73, 72, 72);
+    color: whitesmoke;
+}
+
+.nav-links {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
