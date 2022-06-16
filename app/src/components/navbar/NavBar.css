@@ -1,5 +1,11 @@
+:root {
+    --color-main: #313131;
+    --color-hover: #414141;
+    --color-font: #fff;
+}
+
 .nav {
-    background: #313131;
+    background: var(--color-main);
     height: 80px;
     display: flex;
     justify-content: center;
@@ -8,7 +14,7 @@
 }
 
 .nav-logo {
-    color: #fff;
+    color: var(--color-font);
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -26,19 +32,19 @@
 }
 
 .nav-link {
-    color: #fff;
+    color: var(--color-font);
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
 
 .nav-link:hover {
-    background-color: #414141;
+    background-color: var(--color-hover);
     border-radius: 4px;
     transition: all 0.2s ease-out;
 }
 
 .menu-icon {
-    color: #fff;
+    color: var(--color-font);
     display: none;
 }
 
@@ -60,7 +66,7 @@
     }
 
     .nav-menu.active {
-        background: #313131;
+        background: var(--color-main);
         left: 0;
         opacity: 1;
         transition: all 0.5s ease;
@@ -75,7 +81,7 @@
     }
 
     .nav-link:hover {
-        background-color: #414141;
+        background-color: var(--color-hover);
         border-radius: 0;
     }
 
