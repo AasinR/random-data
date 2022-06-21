@@ -1,47 +1,23 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import "./NavBar.css";
 
 
 function NavBar() {
-    const menuItems = [
-        {
-            title: "Data",
-            url: "/data",
-            cName: "nav-link"
-        },
-        {
-            title: "Home",
-            url: "/",
-            cName: "nav-link"
-        }
-    ]
-
-    let [clicked, setClicked] = useState<boolean>(false);
-
-    const handleClick = () => {
-        setClicked(!clicked);
-    }
     
     return (
-        <nav className="nav">
-            <h1 className="nav-logo">Navbar</h1>
-            <div className="menu-icon" onClick={handleClick}>
-                <FontAwesomeIcon icon={clicked ? faTimes : faBars}></FontAwesomeIcon>
-            </div>
-            <ul className={clicked ? "nav-menu active" : "nav-menu"}>
-                {menuItems.map((item, index) => {
-                    return (
-                        <li key={index}>
-                            <a className={item.cName} href={item.url}>
-                                {item.title}
-                            </a>
-                        </li>
-                    );
-                })}
-            </ul>
-        </nav>
+        <Navbar bg="dark" expand="lg" variant="dark">
+            <Container>
+                <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-nav-bar" />
+                <Navbar.Collapse id="basic-nav-bar">
+                    <Nav className="me-auto">
+                        <Nav.Link className="nav-link" as={Link} to="data">Data</Nav.Link>
+                        <Nav.Link className="nav-link" as={Link} to="/">Home</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 
