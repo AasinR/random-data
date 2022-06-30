@@ -1,18 +1,23 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import DataPage from './components/data/DataPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import DataListPage from './pages/DataListPage';
+import DataPage from './pages/DataPage';
 import NavBar from './components/navbar/NavBar';
 
 function App() {
     
     return (
         <div>
-            <NavBar />
             <BrowserRouter>
+                <NavBar />
                 <Routes>
-                    <Route path='/' element={<TestHome />}/>
-                    <Route path='/data' element={<DataPage />}/>
+                    <Route path='' element={<TestHome />}/>
+                    <Route path='data'>
+                        <Route path='' element={<DataListPage />}/>
+                        <Route path=':dataId' element={<DataPage />}/>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </div>
