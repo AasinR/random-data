@@ -28,7 +28,7 @@ function TestHome() {
     const items = [];
     for (let i=0; i<100; i++) {
         items.push(
-            <p className='test'> Number: {i}</p>
+            <p key={i} className='test'> Number: {i}</p>
         );
     }
     return (
