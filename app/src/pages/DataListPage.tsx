@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import axios from 'axios';
-import DataCard from "../components/data_card/DataCard";
-import SearchBar from "../components/searchbar/SearchBar";
+import { DataCard, SearchBar } from "../components";
 import "./DataListPage.css";
 
 function DataListPage() {

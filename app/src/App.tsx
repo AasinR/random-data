@@ -1,10 +1,8 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import DataListPage from './pages/DataListPage';
-import DataPage from './pages/DataPage';
-import NavBar from './components/navbar/NavBar';
+import { DataListPage, DataPage } from './pages';
+import { NavBar } from './components';
 
 function App() {
     
