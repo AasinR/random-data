@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DataListPage, DataPage } from './pages';
+import { DataListPage, DataPage, ErrorPage } from './pages';
 import { NavBar } from './components';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
                         <Route path='' element={<DataListPage />}/>
                         <Route path=':dataId' element={<DataPage />}/>
                     </Route>
+                    <Route path='*' element={<ErrorPage />}/>
                 </Routes>
             </BrowserRouter>
         </div>
