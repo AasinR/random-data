@@ -1,0 +1,23 @@
+.page-container {
+    border-style: solid;
+    border-color: green;
+}
+
+.content-display {
+    width: 60rem;
+    resize: none;
+    margin-top: 10px;
+}
+
+.content-display::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content-display::-webkit-scrollbar-track {
+    background: #c0c0c0;
+}
+
+.content-display::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 20px;
+}
