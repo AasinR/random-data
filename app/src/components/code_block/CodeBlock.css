@@ -2,7 +2,8 @@
     border-style: solid;
     border-color: #808080;
     border-radius: 5px;
-    max-width: 60rem;
+    width: 60rem;
+    padding: 0;
 }
 
 .code-header {
