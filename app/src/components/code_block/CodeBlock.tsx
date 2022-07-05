@@ -3,6 +3,7 @@ import { Button, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import { downloadFile } from "../../logic";
+import { useCopyClipboard } from "../../hooks";
 import "./CodeBlock.css";
 
 type codeBlock = {
@@ -16,7 +17,7 @@ type codeBlock = {
 
 function CodeBlock({ className, content, name, extension, rows, disabled }: codeBlock) {
     const [value, setValue] = useState<string>("");
-    const [tipClicked, setTipClicked] = useState<boolean>(false);
+    const {handleCopy, handleCopyToggle, clicked} = useCopyClipboard(value);
 
     useEffect(() => {
         setValue(content);
@@ -25,22 +26,6 @@ function CodeBlock({ className, content, name, extension, rows, disabled }: code
     // change textarea value on change
     const handleChange = (event: any) => {
         setValue(event.target.value);
-    }
-
-    // copy content to the clipboard
-    const handleCopy = () => {
-        navigator.clipboard.writeText(value);
-        setTipClicked(true);
-    }
-
-    // set tipClicked to false after 200 ms
-    const handleCopyToggle = () => {
-        if (tipClicked) {
-            setTimeout(
-                () => setTipClicked(false),
-                200
-            );
-        }
     }
 
     return (
@@ -56,7 +41,7 @@ function CodeBlock({ className, content, name, extension, rows, disabled }: code
                         delay={{show:200, hide:0}}
                         overlay={
                             <Tooltip>
-                                {tipClicked ? "Copied!" : "Copy to clipboard"}
+                                {clicked ? "Copied!" : "Copy to clipboard"}
                             </Tooltip>
                         }
                     >
