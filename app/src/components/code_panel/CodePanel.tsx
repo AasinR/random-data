@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import { downloadFile } from "../../logic";
 import { useCopyClipboard } from "../../hooks";
-import "./CodeBlock.css";
+import "./CodePanel.css";
 
-type codeBlock = {
+type codePanel = {
     className?: string,
     content: string,
     name: string,
@@ -15,7 +15,7 @@ type codeBlock = {
     disabled?: boolean
 }
 
-function CodeBlock({ className, content, name, extension, rows, disabled }: codeBlock) {
+function CodePanel({ className, content, name, extension, rows, disabled }: codePanel) {
     const [value, setValue] = useState<string>("");
     const {handleCopy, handleCopyToggle, clicked} = useCopyClipboard(value);
 
@@ -83,4 +83,4 @@ function CodeBlock({ className, content, name, extension, rows, disabled }: code
     );
 }
 
-export default CodeBlock;
+export default CodePanel;

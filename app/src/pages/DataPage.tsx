@@ -3,7 +3,7 @@ import { Container, Form, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
 import decode from "../logic/decode";
 import ErrorPage from "./ErrorPage";
-import { CodeBlock } from "../components";
+import { CodePanel } from "../components";
 import "./DataPage.css";
 import { useDataType } from "../hooks";
 
@@ -60,7 +60,7 @@ function DataPage() {
                 </InputGroup>
             </Row>
             <Row className="justify-content-md-center">
-                <CodeBlock
+                <CodePanel
                     className="data-code-display"
                     content={codeValue}
                     name={name}
