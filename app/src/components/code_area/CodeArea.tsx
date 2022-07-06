@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import Prism from "prismjs";
-import "prismjs/themes/prism-okaidia.css";
+import Prism from "../../prismjs/prism";
+import "../../prismjs/prism.css";
 import "./CodeArea.css"
 
 type codeArea = {

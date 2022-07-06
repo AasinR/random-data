@@ -10,17 +10,20 @@ type codeBlock = {
     className?: string,
     content: string,
     name: string,
-    extension: string
+    language: {
+        name: string,
+        extension: string
+    }
 }
 
-function CodeBlock({ className, content, name, extension }: codeBlock) {
+function CodeBlock({ className, content, name, language }: codeBlock) {
     const { handleCopy, handleCopyToggle, clicked } = useCopyClipboard(content);
 
     return (
         <div className={`code-block ${className}`}>
             <div className="code-header">
                 <p className="code-title">
-                    File name: {`${name}.${extension}`}
+                    File name: {`${name}.${language.extension}`}
                 </p>
                 <div className="code-button-container">
                     <OverlayTrigger
@@ -52,7 +55,7 @@ function CodeBlock({ className, content, name, extension }: codeBlock) {
                             className="code-button"
                             variant="outline-dark"
                             onClick={() => {
-                                downloadFile(`${name}.${extension}`, content);
+                                downloadFile(`${name}.${language.extension}`, content);
                             }}
                         >
                             <FontAwesomeIcon icon={faFileDownload} />
@@ -63,7 +66,7 @@ function CodeBlock({ className, content, name, extension }: codeBlock) {
             <CodeArea
                 className="code-display"
                 code={content}
-                language="javascript"
+                language={language.name}
                 width="100%"
                 height="20rem"
             />

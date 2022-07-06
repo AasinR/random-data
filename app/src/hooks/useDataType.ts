@@ -3,22 +3,34 @@ import { useState } from "react";
 function useDataType(content: any[], fileName: string) {
     const [codeValue, setCodeValue] = useState<string>("");
     const [name, setName] = useState<string>(fileName);
-    const types: { name: string, extension: string }[] = [
+    const types: { name: string, language: {name: string, extension: string} }[] = [
         {
             name: "Plain Text",
-            extension: "txt"
+            language: {
+                name: "",
+                extension: "txt"
+            }
         },
         {
             name: "JSON",
-            extension: "json"
+            language: {
+                name: "json",
+                extension: "json"
+            }
         },
         {
             name: "Java",
-            extension: "java"
+            language: {
+                name: "java",
+                extension: "java"
+            }
         },
         {
             name: "JavaScript",
-            extension: "js"
+            language: {
+                name: "javascript",
+                extension: "js"
+            }
         }
     ];
 

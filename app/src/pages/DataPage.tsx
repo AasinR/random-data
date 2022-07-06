@@ -3,7 +3,7 @@ import { Container, Form, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
 import decode from "../logic/decode";
 import ErrorPage from "./ErrorPage";
-import { CodeBlock } from "../components";
+import { CodeArea, CodeBlock } from "../components";
 import { useDataType } from "../hooks";
 import "./DataPage.css";
 
@@ -11,7 +11,7 @@ function DataPage() {
     const fileName: string = window.location.pathname.split("/")[2];
     const [valid, setValid] = useState<boolean>(true);
     const [content, setContent] = useState<any[]>([]);
-    const [extension, setExtension] = useState<string>("txt");
+    const [language, setLanguage] = useState<{name: string, extension: string}>({name: "", extension: "txt"});
     const { types, selectType, codeValue, name } = useDataType(content, fileName);
 
     useEffect(() => {
@@ -27,8 +27,8 @@ function DataPage() {
     }, [fileName]);
 
     useEffect(() => {
-        selectType(extension);
-    }, [content, selectType, extension]);
+        selectType(language.extension);
+    }, [content, selectType, language]);
 
     if (valid) return (
         <Container className="page-container">
@@ -41,7 +41,11 @@ function DataPage() {
                     <Form.Select
                         className="data-menu-control"
                         onChange={(event: any) => {
-                            setExtension(event.target.value);
+                            const lang = event.target.value.split(",");
+                            setLanguage({
+                                name: lang[0],
+                                extension: lang[1]
+                            });
                         }}
                     >
                         {
@@ -49,7 +53,10 @@ function DataPage() {
                                 return (
                                     <option
                                         key={index}
-                                        value={item.extension}
+                                        value={[
+                                            item.language.name,
+                                            item.language.extension
+                                        ]}
                                     >
                                         {item.name}
                                     </option>
@@ -64,7 +71,7 @@ function DataPage() {
                     className="data-code-display"
                     content={codeValue}
                     name={name}
-                    extension={extension}
+                    language={language}
                 />
             </Row>
         </Container>
