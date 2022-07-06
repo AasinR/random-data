@@ -1,35 +1,23 @@
-import { useEffect, useState } from "react";
-import { Button, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { CodeArea } from "..";
 import { downloadFile } from "../../logic";
 import { useCopyClipboard } from "../../hooks";
-import "./CodePanel.css";
+import "./CodeBlock.css";
 
-type codePanel = {
+type codeBlock = {
     className?: string,
     content: string,
     name: string,
-    extension: string,
-    rows?: number,
-    disabled?: boolean
+    extension: string
 }
 
-function CodePanel({ className, content, name, extension, rows, disabled }: codePanel) {
-    const [value, setValue] = useState<string>("");
-    const {handleCopy, handleCopyToggle, clicked} = useCopyClipboard(value);
-
-    useEffect(() => {
-        setValue(content);
-    }, [content]);
-
-    // change textarea value on change
-    const handleChange = (event: any) => {
-        setValue(event.target.value);
-    }
+function CodeBlock({ className, content, name, extension }: codeBlock) {
+    const { handleCopy, handleCopyToggle, clicked } = useCopyClipboard(content);
 
     return (
-        <div className={`code-block ${className ? className : ""}`}>
+        <div className={`code-block ${className}`}>
             <div className="code-header">
                 <p className="code-title">
                     File name: {`${name}.${extension}`}
@@ -38,7 +26,7 @@ function CodePanel({ className, content, name, extension, rows, disabled }: code
                     <OverlayTrigger
                         placement="top"
                         onToggle={handleCopyToggle}
-                        delay={{show:200, hide:0}}
+                        delay={{ show: 200, hide: 0 }}
                         overlay={
                             <Tooltip>
                                 {clicked ? "Copied!" : "Copy to clipboard"}
@@ -55,7 +43,7 @@ function CodePanel({ className, content, name, extension, rows, disabled }: code
                     </OverlayTrigger>
                     <OverlayTrigger
                         placement="top"
-                        delay={{show:200, hide:0}}
+                        delay={{ show: 200, hide: 0 }}
                         overlay={
                             <Tooltip>Download</Tooltip>
                         }
@@ -64,7 +52,7 @@ function CodePanel({ className, content, name, extension, rows, disabled }: code
                             className="code-button"
                             variant="outline-dark"
                             onClick={() => {
-                                downloadFile(`${name}.${extension}`, value);
+                                downloadFile(`${name}.${extension}`, content);
                             }}
                         >
                             <FontAwesomeIcon icon={faFileDownload} />
@@ -72,15 +60,15 @@ function CodePanel({ className, content, name, extension, rows, disabled }: code
                     </OverlayTrigger>
                 </div>
             </div>
-            <Form.Control className="code-area"
-                as="textarea"
-                rows={rows}
-                value={value}
-                disabled={disabled}
-                onChange={handleChange}
+            <CodeArea
+                className="code-display"
+                code={content}
+                language="javascript"
+                width="100%"
+                height="20rem"
             />
         </div>
     );
 }
 
-export default CodePanel;
+export default CodeBlock;

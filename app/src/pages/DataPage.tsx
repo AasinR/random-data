@@ -3,9 +3,9 @@ import { Container, Form, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
 import decode from "../logic/decode";
 import ErrorPage from "./ErrorPage";
-import { CodePanel } from "../components";
-import "./DataPage.css";
+import { CodeBlock } from "../components";
 import { useDataType } from "../hooks";
+import "./DataPage.css";
 
 function DataPage() {
     const fileName: string = window.location.pathname.split("/")[2];
@@ -60,13 +60,11 @@ function DataPage() {
                 </InputGroup>
             </Row>
             <Row className="justify-content-md-center">
-                <CodePanel
+                <CodeBlock
                     className="data-code-display"
                     content={codeValue}
                     name={name}
                     extension={extension}
-                    rows={10}
-                    disabled
                 />
             </Row>
         </Container>

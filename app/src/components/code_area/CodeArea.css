@@ -1,0 +1,29 @@
+.code-area {
+    width: 60rem;
+    height: 10rem;
+    padding: 0;
+    position: relative;
+}
+
+.code-highlight {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -8px;
+
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.code-highlight::-webkit-scrollbar {
+    width: 6px;
+}
+
+.code-highlight::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.code-highlight::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 20px;
+}
