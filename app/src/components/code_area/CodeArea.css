@@ -17,6 +17,7 @@
 
 .code-highlight::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
 }
 
 .code-highlight::-webkit-scrollbar-track {
