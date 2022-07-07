@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { formatName } from "../logic";
 
 function useDataType(content: any[], fileName: string) {
     const [codeValue, setCodeValue] = useState<string>("");
@@ -7,7 +8,7 @@ function useDataType(content: any[], fileName: string) {
         {
             name: "Plain Text",
             language: {
-                name: "",
+                name: "text",
                 extension: "txt"
             }
         },
@@ -31,8 +32,38 @@ function useDataType(content: any[], fileName: string) {
                 name: "javascript",
                 extension: "js"
             }
+        },
+        {
+            name: "Python",
+            language: {
+                name: "python",
+                extension: "py"
+            }
         }
     ];
+
+    // select extension type
+    const selectType = (type: string, singleLine: boolean) => {
+        switch (type) {
+            case "txt":
+                toText(singleLine);
+                break;
+            case "json":
+                toJSON(singleLine);
+                break;
+            case "java":
+                toJava(singleLine);
+                break;
+            case "js":
+                toJavaScript(singleLine);
+                break;
+            case "py":
+                toPython(singleLine);
+                break;
+            default:
+                toText(singleLine);
+        }
+    }
 
     // convert array to plain text
     function toText(singleLine: boolean) {
@@ -62,8 +93,8 @@ function useDataType(content: any[], fileName: string) {
 
     // convert array to Java array
     function toJava(singleLine: boolean) {
-        setName(name.charAt(0).toUpperCase() + name.slice(1));
-        let result: string = `public class ${name} {\n    String[] data = {`;
+        setName(formatName(fileName, "pascal"));
+        let result: string = `public class ${name} {\n    String[] ${formatName(fileName, "camel")} = {`;
         if (singleLine) {
             result = `${result}"${content.join('", "')}"};\n}`;
         }
@@ -75,35 +106,28 @@ function useDataType(content: any[], fileName: string) {
 
     // convert array to JavaScript array
     function toJavaScript(singleLine: boolean) {
-        let result: string;
+        let result: string = `const ${formatName(fileName, "camel")} = [`;
         if (singleLine) {
-            result = `const data = ["${content.join('", "')}"];`;
+            result = `${result}"${content.join('", "')}"];`;
         }
         else {
-            result = `const data = [\n    "${content.join('",\n    "')}"\n];`;
+            result = `${result}\n    "${content.join('",\n    "')}"\n];`;
         }
         setCodeValue(result);
         setName(fileName);
     }
 
-    // select extension type
-    const selectType = (type: string, singleLine: boolean) => {
-        switch (type) {
-            case "txt":
-                toText(singleLine);
-                break;
-            case "json":
-                toJSON(singleLine);
-                break;
-            case "java":
-                toJava(singleLine);
-                break;
-            case "js":
-                toJavaScript(singleLine);
-                break;
-            default:
-                toText(singleLine);
+    // convert array to Python array
+    function toPython(singleLine: boolean) {
+        let result: string = `${formatName(fileName, "snake")} = [`;
+        if (singleLine) {
+            result = `${result}"${content.join('", "')}"]`;
         }
+        else {
+            result = `${result}\n    "${content.join('",\n    "')}"\n]`;
+        }
+        setCodeValue(result);
+        setName(formatName(fileName, "snake"));
     }
 
     return { types, selectType, codeValue, name };
