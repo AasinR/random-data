@@ -3,7 +3,7 @@ import { useState } from "react";
 function useDataType(content: any[], fileName: string) {
     const [codeValue, setCodeValue] = useState<string>("");
     const [name, setName] = useState<string>(fileName);
-    const types: { name: string, language: {name: string, extension: string} }[] = [
+    const types: { name: string, language: { name: string, extension: string } }[] = [
         {
             name: "Plain Text",
             language: {
@@ -35,75 +35,74 @@ function useDataType(content: any[], fileName: string) {
     ];
 
     // convert array to plain text
-    function toText() {
-        const result: string = content.join("\n");
+    function toText(singleLine: boolean) {
+        let result: string;
+        if (singleLine) {
+            result = content.join(", ");
+        }
+        else {
+            result = content.join("\n");
+        }
         setCodeValue(result);
         setName(fileName);
     }
 
     // convert array to JSON array
-    function toJSON() {
-        let result: string = "[\n    ";
-        content.forEach((item: string, index: number) => {
-            if (index === content.length - 1) {
-                result = result + `"${item}"\n]`;
-            }
-            else {
-                result = result + `"${item}",\n    `;
-            }
-        });
+    function toJSON(singleLine: boolean) {
+        let result: string;
+        if (singleLine) {
+            result = `["${content.join('", "')}"]`;
+        }
+        else {
+            result = `[\n    "${content.join('",\n    "')}"\n]`;
+        }
         setCodeValue(result);
         setName(fileName);
     }
 
     // convert array to Java array
-    function toJava() {
+    function toJava(singleLine: boolean) {
         setName(name.charAt(0).toUpperCase() + name.slice(1));
-        let result: string = `public class ${name} {\n    String[] data = {\n        `;
-        
-        content.forEach((item: string, index: number) => {
-            if (index === content.length - 1) {
-                result = result + `"${item}"\n    };\n}`;
-            }
-            else {
-                result = result + `"${item}",\n        `;
-            }
-        });
+        let result: string = `public class ${name} {\n    String[] data = {`;
+        if (singleLine) {
+            result = `${result}"${content.join('", "')}"};\n}`;
+        }
+        else {
+            result = `${result}\n        "${content.join('",\n        "')}"\n    };\n}`;
+        }
         setCodeValue(result);
     }
 
     // convert array to JavaScript array
-    function toJavaScript() {
-        let result: string = "const data = [\n    ";
-        content.forEach((item: string, index: number) => {
-            if (index === content.length - 1) {
-                result = result + `"${item}"\n];`;
-            }
-            else {
-                result = result + `"${item}",\n    `;
-            }
-        });
+    function toJavaScript(singleLine: boolean) {
+        let result: string;
+        if (singleLine) {
+            result = `const data = ["${content.join('", "')}"];`;
+        }
+        else {
+            result = `const data = [\n    "${content.join('",\n    "')}"\n];`;
+        }
         setCodeValue(result);
         setName(fileName);
     }
 
     // select extension type
-    const selectType = (type: string) => {
+    const selectType = (type: string, singleLine: boolean) => {
         switch (type) {
             case "txt":
-                toText();
+                toText(singleLine);
                 break;
             case "json":
-                toJSON();
+                toJSON(singleLine);
                 break;
             case "java":
-                toJava();
+                toJava(singleLine);
                 break;
             case "js":
-                toJavaScript();
+                toJavaScript(singleLine);
                 break;
             default:
-                toText();
+                toText(singleLine);
         }
     }
 
