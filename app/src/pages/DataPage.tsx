@@ -19,7 +19,7 @@ function DataPage() {
     const fileName: string = window.location.pathname.split("/")[2];
     const [valid, setValid] = useState<boolean>(true);
     const [content, setContent] = useState<any[]>([]);
-    const [formValue, setFormValue] = useState<formvalue>({ language: { name: "", extension: "txt" }, format: false });
+    const [formValue, setFormValue] = useState<formvalue>({ language: { name: "text", extension: "txt" }, format: false });
     const { types, selectType, codeValue, name } = useDataType(content, fileName);
 
     useEffect(() => {
