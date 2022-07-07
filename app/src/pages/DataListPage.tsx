@@ -1,30 +1,20 @@
-import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
-import axios from 'axios';
 import { DataCard, SearchBar } from "../components";
+import { useFetchDataList } from "../hooks";
 import "./DataListPage.css";
 
 function DataListPage() {
-    const [dataFiles, setDataFiles] = useState<any[]>([]);
-
-    useEffect(() => {
-        axios.get("https://api.github.com/repos/AasinR/random-data/contents/data")
-            .then(res => {
-                setDataFiles(res.data);
-            });
-    }, []);
+    const { dataList } = useFetchDataList();
 
     return (
         <Container className="page-container">
             <Row className="justify-content-md-center searchbar">
-                <SearchBar placeholder="Search..." data={dataFiles} />
+                <SearchBar placeholder="Search..." data={dataList} />
             </Row>
             <Row className="data-list">
-                {dataFiles.map((data, index) => {
-                    const fileName: string = data.name.split(".")[0];
-
+                {dataList.map((data, index) => {
                     return (
-                        <DataCard key={index} name={fileName} href={"/data/" + fileName} />
+                        <DataCard key={index} name={data.title} href={"/data/" + data.fileName.split(".")[0]} />
                     );
                 })}
             </Row>

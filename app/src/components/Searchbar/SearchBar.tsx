@@ -14,7 +14,7 @@ function SearchBar({ placeholder, data }: { placeholder: string, data: any[] }) 
         const searchWord: string = event.target.value;
         setSearchValue(searchWord);
         const result: any[] = data.filter((value) => {
-            return value.name.split(".")[0].toLowerCase().includes(searchWord.toLowerCase())
+            return value.fileName.split(".")[0].toLowerCase().includes(searchWord.toLowerCase())
         });
         if (searchWord) {
             setSearchRes(result);
@@ -35,11 +35,9 @@ function SearchBar({ placeholder, data }: { placeholder: string, data: any[] }) 
                 <Collapse in={searchValue.length !== 0}>
                     <Container className="search-container">
                         {searchRes.slice(0, 5).map((data, index) => {
-                            const name = data.name.split(".")[0];
-
                             return (
-                                <Row className="search-link" key={index} as={Link} to={"/data/" + name}>
-                                    {name}
+                                <Row className="search-link" key={index} as={Link} to={"/data/" + data.fileName.split(".")[0]}>
+                                    {data.title}
                                 </Row>
                             );
                         })}
