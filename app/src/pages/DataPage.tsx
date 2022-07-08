@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { Container, Form, InputGroup, Row } from "react-bootstrap";
-import axios from "axios";
-import decode from "../logic/decode";
-import ErrorPage from "./ErrorPage";
+import { ErrorPage } from "../pages";
 import { CodeBlock } from "../components";
-import { useDataType } from "../hooks";
+import { useDataType, useFetchData } from "../hooks";
 import "./DataPage.css";
 
 type formvalue = {
@@ -17,28 +15,15 @@ type formvalue = {
 
 function DataPage() {
     const fileName: string = window.location.pathname.split("/")[2];
-    const [valid, setValid] = useState<boolean>(true);
-    const [content, setContent] = useState<any[]>([]);
+    const { dataContent, validData } = useFetchData(fileName);
     const [formValue, setFormValue] = useState<formvalue>({ language: { name: "text", extension: "txt" }, format: false });
-    const { types, selectType, codeValue, name } = useDataType(content, fileName);
-
-    useEffect(() => {
-        axios.get(`https://api.github.com/repos/AasinR/random-data/contents/data/${fileName}.json`)
-            .then(res => {
-                setContent(decode(res.data.content));
-
-                console.log(res.data);
-            })
-            .catch(error => {
-                setValid(false);
-            });
-    }, [fileName]);
+    const { types, selectType, codeValue, name } = useDataType(dataContent, fileName);
 
     useEffect(() => {
         selectType(formValue.language.extension, formValue.format);
-    }, [content, selectType, formValue]);
+    }, [dataContent, selectType, formValue]);
 
-    if (valid) return (
+    if (validData) return (
         <Container className="page-container">
             <Row className="data-title-container">
                 <p className="data-title">{fileName}</p>
