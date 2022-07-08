@@ -4,10 +4,9 @@
     padding: 0;
 }
 
-.page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.page-container {
+    border-style: solid;
+    border-color: green;
 }
 
 .test {

@@ -3,6 +3,7 @@ import { Container, Form, InputGroup, Row } from "react-bootstrap";
 import { ErrorPage } from "../pages";
 import { CodeBlock } from "../components";
 import { useDataType, useFetchData } from "../hooks";
+import { formatName } from "../logic";
 import "./DataPage.css";
 
 type formvalue = {
@@ -25,8 +26,12 @@ function DataPage() {
 
     if (validData) return (
         <Container className="page-container">
-            <Row className="data-title-container">
-                <p className="data-title">{fileName}</p>
+            <Row className="justify-content-md-center">
+                <div className="data-title-container">
+                    <hr className="data-title-line"/>
+                    <h1 className="data-title">{formatName(fileName, "title")}</h1>
+                    <hr className="data-title-line"/>
+                </div>
             </Row>
             <Row className="justify-content-md-center">
                 <Form className="data-menu">
