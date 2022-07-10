@@ -1,31 +1,34 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DataListPage, DataPage, ErrorPage } from './pages';
+import { DataListPage, DataPage, ErrorPage, RandomPage } from './pages';
 import { NavBar } from './components';
 
 function App() {
-    
+
     return (
         <div>
             <BrowserRouter>
                 <NavBar />
                 <Routes>
-                    <Route path='' element={<TestHome />}/>
+                    <Route path='' element={<TestHome />} />
                     <Route path='data'>
-                        <Route path='' element={<DataListPage />}/>
-                        <Route path=':dataId' element={<DataPage />}/>
+                        <Route path='' element={<DataListPage />} />
+                        <Route path=':dataId' element={<DataPage />} />
                     </Route>
-                    <Route path='*' element={<ErrorPage />}/>
+                    <Route path='random'>
+                        <Route path='' element={<RandomPage />} />
+                    </Route>
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>
         </div>
-	);
+    );
 }
 
 function TestHome() {
     const items = [];
-    for (let i=0; i<100; i++) {
+    for (let i = 0; i < 100; i++) {
         items.push(
             <p key={i} className='test'> Number: {i}</p>
         );

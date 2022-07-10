@@ -1,0 +1,10 @@
+.random-list {
+    width: 100%;
+    max-width: 70rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    font-size: 0;
+    padding: 10px;
+}

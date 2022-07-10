@@ -13,6 +13,7 @@ function NavBar() {
                 <Navbar.Collapse id="basic-nav-bar">
                     <Nav className="me-auto">
                         <Nav.Link className="nav-link" as={Link} to="data">Data</Nav.Link>
+                        <Nav.Link className="nav-link" as={Link} to="random">Random</Nav.Link>
                         <Nav.Link className="nav-link" as={Link} to="/">Home</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
