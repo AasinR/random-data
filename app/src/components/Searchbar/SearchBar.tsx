@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Collapse, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./SearchBar.css"
 
-function SearchBar({ placeholder, data }: { placeholder: string, data: any[] }) {
-    const [searchRes, setSearchRes] = useState<any[]>([]);
+type listType = {
+    title: string,
+    link: string
+}[]
+
+type searchType = {
+    placeholder: string,
+    searchList: listType
+}
+
+function SearchBar({ placeholder, searchList }: searchType) {
+    const [searchRes, setSearchRes] = useState<listType>([]);
     const [searchValue, setSearchValue] = useState<string>("");
 
     // handle search filtering on value change
     const handleSearch = (event: any) => {
         const searchWord: string = event.target.value;
         setSearchValue(searchWord);
-        const result: any[] = data.filter((value) => {
-            return value.fileName.split(".")[0].toLowerCase().includes(searchWord.toLowerCase())
+        const result: any[] = searchList.filter((value) => {
+            return value.title.split(".")[0].toLowerCase().includes(searchWord.toLowerCase())
         });
         if (searchWord) {
             setSearchRes(result);
@@ -36,7 +46,7 @@ function SearchBar({ placeholder, data }: { placeholder: string, data: any[] }) 
                     <Container className="search-container">
                         {searchRes.slice(0, 5).map((data, index) => {
                             return (
-                                <Row className="search-link" key={index} as={Link} to={"/data/" + data.fileName.split(".")[0]}>
+                                <Row className="search-link" key={index} as={Link} to={data.link}>
                                     {data.title}
                                 </Row>
                             );
