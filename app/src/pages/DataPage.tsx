@@ -1,6 +1,6 @@
 import { Container, Row } from "react-bootstrap";
 import { ErrorPage } from "../pages";
-import { DataDisplay } from "../components";
+import { DataDisplay, PageTitle } from "../components";
 import { useFetchData } from "../hooks";
 import { formatName } from "../logic";
 import "./DataPage.css";
@@ -12,11 +12,10 @@ function DataPage() {
     if (validData) return (
         <Container className="page-container">
             <Row className="justify-content-md-center">
-                <div className="data-title-container">
-                    <hr className="data-title-line"/>
-                    <h1 className="data-title">{formatName(fileName, "title")}</h1>
-                    <hr className="data-title-line"/>
-                </div>
+                <PageTitle
+                    className="data-page-title"
+                    title={formatName(fileName, "title")}
+                />
             </Row>
             <Row className="justify-content-md-center">
                 <DataDisplay
