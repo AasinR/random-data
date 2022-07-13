@@ -1,0 +1,33 @@
+.random-menu {
+    width: 60rem;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.random-number-input::-webkit-inner-spin-button,
+.random-number-input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.password-menu-label {
+    width: 8rem;
+}
+
+.password-length {
+    display: flex;
+    justify-content: space-between;
+}
+
+.password-length-min,
+.password-length-max {
+    width: 30rem;
+}
+
+.password-menu-submit {
+    width: 100%;
+}
+
+.random-data-display {
+    width: 60rem;
+}
