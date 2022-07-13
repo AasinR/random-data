@@ -20,4 +20,5 @@ function choice(array: any[], number: number = 1) {
     return result;
 }
 
-export default { randInt, choice };
+const random = { randInt, choice };
+export default random;

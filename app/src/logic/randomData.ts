@@ -10,5 +10,6 @@ function randPassword(minLength: number, maxLength: number) {
     return random.choice(characters.split(""), length).join("");
 }
 
-export default { randPassword };
+const randomData = { randPassword };
+export default randomData;
 export { randPassword };
