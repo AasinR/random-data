@@ -1,3 +1,6 @@
+/**
+ * Returns date as string in the given format.
+ */
 function formatDate(date: Date, format: string, separator: string) {
     const array: string[] = format.split("-");
     let dates: string[] = [];
@@ -22,7 +25,7 @@ function formatDate(date: Date, format: string, separator: string) {
                 dateString = date.getDate().toString().padStart(2, "0");
                 break;
             case "d":
-                date.getDate().toString();
+                dateString = date.getDate().toString();
         }
 
         return dateString;
