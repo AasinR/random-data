@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { DataDisplay, PageTitle } from "../../components";
-import { randPassword } from "../../logic";
+import { random } from "../../logic";
 import "./Random.css";
 
 interface inputType {
@@ -52,7 +52,7 @@ function PasswordPage() {
     const handleGenerate = () => {
         const result: string[] = []
         for (let i = 0; i < inputValue.count; i++) {
-            result.push(randPassword(inputValue.minLength, inputValue.maxLength));
+            result.push(random.string(inputValue.minLength, inputValue.maxLength));
         }
         setData(result);
     }
@@ -126,7 +126,7 @@ function PasswordPage() {
                         </InputGroup>
                     </Row>
                     <Button
-                        className="password-menu-submit"
+                        className="password-menu-submit random-input"
                         variant="outline-dark"
                         onClick={handleGenerate}
                     >

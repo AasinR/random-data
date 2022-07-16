@@ -7,6 +7,10 @@ function RandomPage() {
         {
             title: "Password",
             link: "/random/password"
+        },
+        {
+            title: "Date",
+            link: "/random/date"
         }
     ];
 

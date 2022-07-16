@@ -4,12 +4,18 @@
     margin-bottom: 10px;
 }
 
+.random-input:focus {
+    border-color: #adb5bd;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #adb5bd;
+}
+
 .random-number-input::-webkit-inner-spin-button,
 .random-number-input::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
 
+/* password */
 .password-menu-label {
     width: 8rem;
 }
@@ -30,4 +36,23 @@
 
 .random-data-display {
     width: 60rem;
+}
+
+/* date */
+.date-menu-label {
+    width: 8rem;
+}
+
+.date-interval {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-interval-from,
+.date-interval-to {
+    width: 30rem;
+}
+
+.date-menu-submit {
+    width: 100%;
 }
