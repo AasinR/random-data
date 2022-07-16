@@ -20,5 +20,27 @@ function choice(array: any[], number: number = 1) {
     return result;
 }
 
-const random = { randInt, choice };
+/**
+ * Creates a random string with the given length.
+ */
+function string(minLength: number, maxLength: number) {
+    const characters: string = "0123456789~!@#$%^&*()_+}{[]|abcdefghikjlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const length: number = randInt(minLength, maxLength);
+
+    return choice(characters.split(""), length).join("");
+}
+
+/**
+ * Returns a random date between the given dates.
+ */
+function date(start: Date, end: Date) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+const random = {
+    randInt,
+    choice,
+    string,
+    date
+};
 export default random;
