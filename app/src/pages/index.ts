@@ -8,3 +8,4 @@ export { default as ErrorPage } from "./ErrorPage";
 export { default as PasswordPage } from "./random/PasswordPage";
 export { default as DatePage } from "./random/DatePage";
 export { default as TimePage } from "./random/TimePage";
+export { default as TimestampPage } from "./random/TimestampPage";

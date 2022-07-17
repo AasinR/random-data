@@ -1,7 +1,7 @@
 /**
  * Returns date as string in the given format.
  */
-function formatDate(date: Date, format: string, separator: string) {
+function formatDate(date: Date, format: string, separator: string = "-") {
     const array: string[] = format.split("-");
     let dates: string[] = [];
 

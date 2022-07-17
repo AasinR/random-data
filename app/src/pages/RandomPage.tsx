@@ -15,6 +15,10 @@ function RandomPage() {
         {
             title: "Time",
             link: "/random/time"
+        },
+        {
+            title: "Timestamp",
+            link: "/random/timestamp"
         }
     ];
 
