@@ -56,3 +56,22 @@
 .date-menu-submit {
     width: 100%;
 }
+
+/* time */
+.time-menu-label {
+    width: 8rem;
+}
+
+.time-interval {
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-interval-from,
+.time-interval-to {
+    width: 30rem;
+}
+
+.time-menu-submit {
+    width: 100%;
+}

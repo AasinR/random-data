@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DataListPage, DataPage, DatePage, ErrorPage, PasswordPage, RandomPage } from './pages';
+import { DataListPage, DataPage, DatePage, ErrorPage, PasswordPage, RandomPage, TimePage } from './pages';
 import { NavBar } from './components';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
                         <Route path='' element={<RandomPage />} />
                         <Route path='password' element={<PasswordPage />} />
                         <Route path='date' element={<DatePage />} />
+                        <Route path='time' element={<TimePage />} />
                     </Route>
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>
